@@ -1,18 +1,22 @@
 package juego;
 
 import java.util.ArrayList;
+
+import juego.apuestas.Envido;
 import mazo.Mazo;
 import mazo.cartas.Carta;
 
 public class Jugador {
 	private int id;
+	private static int idSiguiente = -1;
 	private String nombre;
 	private Mazo mazo;
 	private int puntos;
 	private boolean esMano;
 	
-	public Jugador(int id, String nombre) {
-		this.id = id;
+	public Jugador(String nombre) {
+		idSiguiente++;
+		this.id = idSiguiente;
 		this.nombre = nombre;
 		this.mazo = new Mazo();
 		this.puntos = 0;
@@ -53,6 +57,14 @@ public class Jugador {
 	
 	public ArrayList<Carta> devolverCartas(){
 		return this.mazo.tirarCartas();
+	}
+	
+	public void cantarEnvido(Envido env) {
+		env.cantarApuesta(Envido.ENVIDO, 0);
+	}
+	
+	public void cantarRealEnvido(Envido env) {
+		env.cantarApuesta(Envido.REAL_ENVIDO, 0);
 	}
 	
 	/*TEMPORAL*/

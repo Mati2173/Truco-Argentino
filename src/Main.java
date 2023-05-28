@@ -2,20 +2,19 @@ import juego.Jugador;
 import juego.apuestas.Envido;
 import mazo.Baraja;
 
-public class Test {
+public class Main {
 	/*
 	 Probando algunas cosas
 	 */
 
 	public static void main(String[] args) {
-		Jugador jugadores[] = {new Jugador(0, "Mati"), new Jugador(1, "Mati 2")};
+		Jugador[] jugadores = {new Jugador("Mati"), new Jugador("Mati 2")};
 		Baraja baraja = new Baraja();
 		Envido envido = new Envido();
 		int ganadorEnvido;
-		
 		//PROBANDO 3 PARTIDAS
 		for(int j = 1; j <= 3; j++) {
-			baraja.mezclarCartas();
+			baraja.mezclar();
 			
 			System.out.println("Partida " + j + ":");
 			
@@ -29,6 +28,9 @@ public class Test {
 			jugadores[0].mostrarInfo();
 			jugadores[1].mostrarInfo();
 			
+			//Aceptando el envido
+			envido.aceptarApuesta();
+			
 			//Se indica quien es el ganador del envido
 			ganadorEnvido = envido.ganadorEnvido(jugadores[0], jugadores[1]);
 			System.out.println("\nGanador envido: " + jugadores[ganadorEnvido] + "\n");
@@ -37,6 +39,5 @@ public class Test {
 			baraja.guardarCartas(jugadores[0].devolverCartas());
 			baraja.guardarCartas(jugadores[1].devolverCartas());
 		}
-		
 	}
 }
